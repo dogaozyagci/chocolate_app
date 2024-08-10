@@ -1,63 +1,68 @@
 package com.example.myapp.ui.theme
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
-import androidx.navigation.NavController
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
 
 @Composable
 fun HomeView() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF213021)
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(text = "Welcome!",
-                fontSize = 24.sp,
-                color = Color(0xFFEECB0F),
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(48.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Button(onClick = { }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEECB0F)))
-                {
+    val navController = rememberNavController()
+
+    Scaffold(
+        bottomBar = {
+            BottomAppBar(
+                containerColor = Color(0xFF1B271B),
+            ) {
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { navController.navigate("profile") }) {
                     Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = "User Icon",
-                        tint = Color(0xFF213021)
+                        imageVector = Icons.Filled.Person,
+                        contentDescription = "Profile",
+                        tint = Color(0xFFEECB0F),
+                        modifier = Modifier.size(32.dp)
                     )
                 }
-                Button(onClick = { }, colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEECB0F)))
-                { Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = "Company Icon",
-                    tint = Color(0xFF213021)
-                ) }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { navController.navigate("home") }) {
+                    Icon(
+                        imageVector = Icons.Filled.Home,
+                        contentDescription = "Home",
+                        tint = Color(0xFFEECB0F),
+                        modifier = Modifier.size(62.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { }) {
+                    Icon(
+                        imageVector = Icons.Filled.ExitToApp,
+                        contentDescription = "Logout",
+                        tint = Color(0xFFEECB0F),
+                        modifier = Modifier.size(32.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
             }
+        },
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "profile",
+            Modifier.padding(innerPadding)
+        ) {
+            //composable("home") { HomeScreen() }
+            composable("profile") { ProfileScreen() }
         }
     }
 }
-
