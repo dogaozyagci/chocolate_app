@@ -41,7 +41,7 @@ import com.example.myapp.R
 fun MainPageView(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF213021)
+        color = Color(0xFF1B2B30)
     ) {
         Box(
             modifier = Modifier
@@ -49,9 +49,9 @@ fun MainPageView(navController: NavHostController) {
                     brush = Brush.linearGradient(
                         colors = listOf(
                             Color(0xFF635404),
-                            Color(0xFF213021),
-                            Color(0xFF213021),
-                            Color(0xFF213021),
+                            Color(0x8F315159),
+                            Color(0x8F28444B),
+                            Color(0xB5192928),
                             )
                     )
                 )

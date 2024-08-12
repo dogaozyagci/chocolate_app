@@ -33,7 +33,7 @@ import androidx.navigation.NavHostController
 fun LoginView(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF213021)
+        color = Color(0xFF1B2B30)
     ) {
         Column(
             modifier = Modifier

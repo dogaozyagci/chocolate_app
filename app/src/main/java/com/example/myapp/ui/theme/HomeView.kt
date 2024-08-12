@@ -23,7 +23,7 @@ fun HomeView() {
     Scaffold(
         bottomBar = {
             BottomAppBar(
-                containerColor = Color(0xFF1B271B),
+                containerColor = Color(0xFF131E22),
             ) {
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(onClick = { navController.navigate("home") }) {

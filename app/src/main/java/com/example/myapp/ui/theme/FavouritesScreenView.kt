@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -31,11 +32,12 @@ fun FavouritesPage() {
             painter = painterResource(id = R.drawable.wallpaper),
             contentDescription = "Background Image",
             modifier = Modifier
-                .fillMaxWidth().fillMaxHeight()
+                .fillMaxWidth()
+                .fillMaxHeight()
         )
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = Color(0xFF213021)
+            color = Color(0xFF1B2B30)
 
         ) {
             Column(
@@ -56,79 +58,169 @@ fun FavouritesPage() {
                     fontSize = 20.sp,
                     fontFamily = FontFamily.Serif
                 )
-                Spacer(modifier = Modifier.height(8.dp))
-                Row(
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .fillMaxWidth()
-                        .height(150.dp)
-                        .background(
-                            Color(0x8F315159),
-                            RoundedCornerShape(8.dp)
-                        )
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.cikouc),
-                        contentDescription = "Image Description",
-                        modifier = Modifier
-                            .size(150.dp)
-                            .padding(12.dp)
-                            .clip(RoundedCornerShape(18.dp))
-                    )
-                    Column(
+                Column {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
                         modifier = Modifier
                             .padding(12.dp)
-                            .weight(1f)
-                    ) {
-                        Text(
-                            text = "Yeşil Kutu",
-                            color = Color(0xFFEECB0F),
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = "Karışık ",
-                            color = Color(0xFFEECB0F),
-
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color(0xFF635404),
+                                        Color(0x8F315159),
+                                        Color(0x8F28444B),
+                                        Color(0xB5121D1C),
+                                    )
+                                ),
+                                RoundedCornerShape(8.dp)
                             )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(
-                        modifier = Modifier
-                            .padding(12.dp)
-                            .weight(1f)
                     ) {
-                        Text(
-                            text = "00/00/24",
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFFEECB0F),
-
-                            )
-                        Text(
-                            text = "Ücret: x ",
-                            color = Color(0xFFEECB0F),
+                        Image(
+                            painter = painterResource(id = R.drawable.cikouc),
+                            contentDescription = "Image Description",
+                            modifier = Modifier
+                                .size(150.dp)
+                                .padding(12.dp)
+                                .clip(RoundedCornerShape(18.dp))
                         )
-                        Spacer(modifier = Modifier.height(18.dp))
-                        Row {
-                            IconButton(onClick = { /*TODO*/ }) {
-                                Icon(
-                                    imageVector = Icons.Filled.Favorite,
-                                    contentDescription = "Like",
-                                    tint = Color(0xFFEECB0F)
+                        Column(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .weight(1f)
+                        ) {
+                            Text(
+                                text = "Yeşil Kutu",
+                                color = Color(0xFFEECB0F),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Karışık ",
+                                color = Color(0xFFEECB0F),
+
                                 )
-                            }
-                            IconButton(onClick = { /*TODO*/ }) {
-                                Icon(
-                                    imageVector = Icons.Filled.ShoppingCart,
-                                    contentDescription = "Shopping",
-                                    tint = Color(0xFFEECB0F)
-                                )
-                            }
                         }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Column(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .weight(1f)
+                        ) {
+                            Text(
+                                text = "00/00/24",
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFEECB0F),
+
+                                )
+                            Text(
+                                text = "Ücret: x ",
+                                color = Color(0xFFEECB0F),
+                            )
+                            Spacer(modifier = Modifier.height(18.dp))
+                            Row {
+                                IconButton(onClick = { /*TODO*/ }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Favorite,
+                                        contentDescription = "Like",
+                                        tint = Color(0xFFEECB0F)
+                                    )
+                                }
+                                IconButton(onClick = { /*TODO*/ }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.ShoppingCart,
+                                        contentDescription = "Shopping",
+                                        tint = Color(0xFFEECB0F)
+                                    )
+                                }
+                            }
+
+                        }
+                        Spacer(modifier = Modifier.width(18.dp))
 
                     }
-                    Spacer(modifier = Modifier.width(18.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier
+                            .padding(12.dp)
+                            .fillMaxWidth()
+                            .height(150.dp)
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color(0xFF635404),
+                                        Color(0x8F315159),
+                                        Color(0x8F28444B),
+                                        Color(0xB5121D1C),
+                                    )
+                                ),
+                                RoundedCornerShape(8.dp)
+                            )
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.cikoiki),
+                            contentDescription = "Image Description",
+                            modifier = Modifier
+                                .size(150.dp)
+                                .padding(12.dp)
+                                .clip(RoundedCornerShape(18.dp))
+                        )
+                        Column(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .weight(1f)
+                        ) {
+                            Text(
+                                text = "Kahve Kutu",
+                                color = Color(0xFFEECB0F),
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Kahveli ",
+                                color = Color(0xFFEECB0F),
 
+                                )
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Column(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .weight(1f)
+                        ) {
+                            Text(
+                                text = "00/00/24",
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFEECB0F),
+
+                                )
+                            Text(
+                                text = "Ücret: x ",
+                                color = Color(0xFFEECB0F),
+                            )
+                            Spacer(modifier = Modifier.height(18.dp))
+                            Row {
+                                IconButton(onClick = { /*TODO*/ }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.Favorite,
+                                        contentDescription = "Like",
+                                        tint = Color(0xFFEECB0F)
+                                    )
+                                }
+                                IconButton(onClick = { /*TODO*/ }) {
+                                    Icon(
+                                        imageVector = Icons.Filled.ShoppingCart,
+                                        contentDescription = "Shopping",
+                                        tint = Color(0xFFEECB0F)
+                                    )
+                                }
+                            }
+
+                        }
+                        Spacer(modifier = Modifier.width(18.dp))
+
+                    }
                 }
+
             }
 
         }

@@ -31,7 +31,7 @@ import androidx.navigation.NavHostController
 fun SignUpView(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color(0xFF213021)
+        color = Color(0xFF1B2B30)
     ) {
         Column(
             modifier = Modifier
@@ -95,7 +95,7 @@ fun SignUpView(navController: NavHostController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Kayıt Ol",
-                    color = Color(0xFF213021),
+                    color = Color(0xFF1B2B30),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
                     fontFamily = FontFamily.Serif
