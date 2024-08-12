@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyAppTheme {
-                HomeView()
+                MyApp()
             }
         }
     }
@@ -33,11 +33,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "home") {
-        composable("main") { MainPageView() }
-        composable("login") { LoginView() }
-        composable("signup") { SignUpView() }
-        composable("home") { HomeView() }
+    NavHost(navController = navController, startDestination = "main") {
+        composable("main") { MainPageView(navController) }
+        composable("login") { LoginView(navController) }
+        composable("signup") { SignUpView(navController) }
+        composable("homeView") { HomeView() }
 
 
     }
@@ -47,6 +47,7 @@ fun MyApp() {
 @Composable
 fun DefaultPreview() {
     MyAppTheme {
-        HomeView()
+        MyApp()
     }
 }
+

@@ -1,11 +1,11 @@
 package com.example.myapp.ui.theme
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,21 +26,30 @@ fun HomeView() {
                 containerColor = Color(0xFF1B271B),
             ) {
                 Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = { navController.navigate("home") }) {
+                    Icon(
+                        imageVector = Icons.Filled.Home,
+                        contentDescription = "Home",
+                        tint = Color(0xFFEECB0F),
+                        modifier = Modifier.size(46.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
                 IconButton(onClick = { navController.navigate("profile") }) {
                     Icon(
-                        imageVector = Icons.Filled.Person,
+                        imageVector = Icons.Filled.AccountCircle,
                         contentDescription = "Profile",
                         tint = Color(0xFFEECB0F),
                         modifier = Modifier.size(32.dp)
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(onClick = { navController.navigate("home") }) {
+                IconButton(onClick = { navController.navigate("likes") }) {
                     Icon(
-                        imageVector = Icons.Filled.Home,
-                        contentDescription = "Home",
+                        imageVector = Icons.Filled.FavoriteBorder,
+                        contentDescription = "favourites",
                         tint = Color(0xFFEECB0F),
-                        modifier = Modifier.size(62.dp)
+                        modifier = Modifier.size(32.dp)
                     )
                 }
                 Spacer(modifier = Modifier.weight(1f))
@@ -52,17 +61,19 @@ fun HomeView() {
                         modifier = Modifier.size(32.dp)
                     )
                 }
-                Spacer(modifier = Modifier.weight(1f))
+               Spacer(modifier = Modifier.weight(1f))
             }
         },
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "profile",
+            startDestination = "home",
             Modifier.padding(innerPadding)
         ) {
-            //composable("home") { HomeScreen() }
+            composable("home") { HomeScreen() }
+            composable("likes") { FavouritesPage() }
             composable("profile") { ProfileScreen() }
         }
     }
 }
+

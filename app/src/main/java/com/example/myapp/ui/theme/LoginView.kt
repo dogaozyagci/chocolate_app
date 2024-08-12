@@ -1,5 +1,6 @@
 package com.example.myapp.ui.theme
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,15 +20,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 
 @ExperimentalMaterial3Api
 @Composable
-fun LoginView() {
+fun LoginView(navController: NavHostController) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF213021)
@@ -40,45 +43,54 @@ fun LoginView() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Login!",
-                fontSize = 24.sp,
+                text = "Giris Yap!",
+                fontSize = 44.sp,
                 color = Color(0xFFEECB0F),
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 32.dp)
+                modifier = Modifier.padding(bottom = 32.dp),
+                fontFamily = FontFamily.Cursive
+
             )
             OutlinedTextField(
                 value = "",
-                onValueChange = { /* Kullanıcı adını yönet */ },
-                label = { Text("Username", color = Color(0xFFEECB0F)) },
-                modifier = Modifier.fillMaxWidth()
+                onValueChange = { /*TODO*/ },
+                label = { Text("Kullanıcı Adı", color= Color(0xFFEECB0F), fontFamily = FontFamily.Serif) },
+                modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFEECB0F),
+                    unfocusedBorderColor = Color(0xFFEECB0F)
+                )
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
                 value = "",
-                onValueChange = { /* Şifreyi yönet */ },
-                label = { Text("Password", color = Color(0xFFEECB0F)) },
+                onValueChange = { /*TODO*/ },
+                label = { Text("Şifre", color = Color(0xFFEECB0F), fontFamily = FontFamily.Serif) },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFFEECB0F),
+                    unfocusedBorderColor = Color(0xFFEECB0F),
+                )
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(72.dp))
             Button(
-                onClick = { /* Giriş işlemi */ },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEECB0F)),
-                modifier = Modifier.fillMaxWidth()
+                onClick = { navController.navigate("homeView") },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+                modifier = Modifier.border(1.dp, Color(0xFFEECB0F), ButtonDefaults.outlinedShape)
             ) {
-                Text("Login",
-                    color = Color(0xFF213021),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
+                Text("Giriş Yap",
+                    color = Color(0xFFEECB0F),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily.Serif
                     )
             }
             Spacer(modifier = Modifier.height(16.dp))
             TextButton(onClick = { /* Şifre sıfırlama işlemi */ }) {
-                Text("Forgot Password?", color = Color(0xFFEECB0F))
+                Text("Şifremi Unuttum", color = Color(0xFFEECB0F),fontFamily = FontFamily.Serif)
             }
-            Spacer(modifier = Modifier.height(80.dp))
-            TextButton(onClick = { /* Şifre sıfırlama işlemi */ }) {
-                Text("Don't have an account?", color = Color(0xFFEECB0F))
+            Spacer(modifier = Modifier.height(60.dp))
+            TextButton(onClick = { navController.navigate("signup") }) {
+                Text("Kayıt Ol", color = Color(0xFFEECB0F),fontFamily = FontFamily.Serif)
             }
         }
     }
