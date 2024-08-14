@@ -17,20 +17,28 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.google.firebase.auth.FirebaseAuth
 
 
 @ExperimentalMaterial3Api
 @Composable
-fun LoginView(navController: NavHostController) {
+fun LoginView(navController: NavHostController, onComplete: (Boolean, String?) -> Unit) {
+    val auth = FirebaseAuth.getInstance()
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF1B2B30)
@@ -51,9 +59,9 @@ fun LoginView(navController: NavHostController) {
 
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = { /*TODO*/ },
-                label = { Text("Kullanıcı Adı", color= Color(0xFFEECB0F), fontFamily = FontFamily.Serif) },
+                value = email,
+                onValueChange = { newValue: String -> email = newValue },
+                label = { Text("Kullanıcı e-mail", color = Color(0xFFEECB0F), fontFamily = FontFamily.Serif) },
                 modifier = Modifier.fillMaxWidth(),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color(0xFFEECB0F),
@@ -62,8 +70,8 @@ fun LoginView(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
-                value = "",
-                onValueChange = { /*TODO*/ },
+                value = password,
+                onValueChange = { newValue: String -> password = newValue },
                 label = { Text("Şifre", color = Color(0xFFEECB0F), fontFamily = FontFamily.Serif) },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth(),
@@ -74,7 +82,17 @@ fun LoginView(navController: NavHostController) {
             )
             Spacer(modifier = Modifier.height(72.dp))
             Button(
-                onClick = { navController.navigate("homeView") },
+                    onClick = {
+                        auth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    navController.navigate("homeView")
+                                    onComplete(true, null)
+                                } else {
+                                    onComplete(false, task.exception?.message)
+                                }
+                            }
+                          },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
                 modifier = Modifier.border(1.dp, Color(0xFFEECB0F), ButtonDefaults.outlinedShape)
             ) {
@@ -95,5 +113,8 @@ fun LoginView(navController: NavHostController) {
         }
     }
 }
+
+
+
 
 

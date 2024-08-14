@@ -16,10 +16,12 @@ import com.example.myapp.ui.theme.MainPageView
 import com.example.myapp.ui.theme.LoginView
 import com.example.myapp.ui.theme.MyAppTheme
 import com.example.myapp.ui.theme.SignUpView
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContent {
             MyAppTheme {
                 MyApp()
@@ -33,13 +35,30 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
+
     NavHost(navController = navController, startDestination = "main") {
-        composable("main") { MainPageView(navController) }
-        composable("login") { LoginView(navController) }
-        composable("signup") { SignUpView(navController) }
-        composable("homeView") { HomeView() }
-
-
+        composable("main") {
+            MainPageView(navController)
+        }
+        composable("login") {
+            LoginView(
+                navController = navController,
+                onComplete = { success, errorMessage ->
+                    if (success) {
+                        navController.navigate("homeView") {
+                            popUpTo("login") { inclusive = true }
+                        }
+                    } else {
+                    }
+                }
+            )
+        }
+        composable("homeView") {
+            HomeView()
+        }
+        composable("signup") {
+            SignUpView(navController)
+        }
     }
 }
 

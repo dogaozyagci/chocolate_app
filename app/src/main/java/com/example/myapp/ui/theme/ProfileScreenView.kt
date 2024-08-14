@@ -22,9 +22,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import com.example.myapp.R
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun ProfileScreen() {
+    val auth = FirebaseAuth.getInstance()
+    val currentUser = auth.currentUser
+    val email = currentUser?.email ?: "Email bulunamadı"
+
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -64,16 +69,16 @@ fun ProfileScreen() {
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "Kullanıcı Adı",
+                            text = "Merhaba",
                             color = Color(0xFFEECB0F),
-                            fontSize = 20.sp,
+                            fontSize = 18.sp,
                             fontFamily = FontFamily.Serif
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(3.dp).width(5.dp))
                         Text(
-                            text = "email@example.com",
+                            text = "$email",
                             color = Color(0xFFEECB0F),
-                            fontSize = 16.sp,
+                            fontSize = 18.sp,
                             fontFamily = FontFamily.Serif
                         )
                     }
